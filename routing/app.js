@@ -29,7 +29,12 @@ app.use((req, res, next) => {
 app.get('/', (req,res) => {
     res.send('express start');
 });
-
+app.use((req, res, _) => {
+    res.status(400).render('common/404.html');
+})// 404 페이지만 보여주고 끝나기 때문에 next 필요없음 -> _ 써줌
+app.use((req, res, _) => {
+    res.status(500).render('common/500.html');
+})
 // Routing
 app.use('/admin', admin);
 
