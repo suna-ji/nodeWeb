@@ -23,22 +23,25 @@ app.use('/uploads', express.static('uploads'));
 // 앞에가 url 뒤에가 폴더명
 app.use((req, res, next) => {
     app.locals.isLogin = true;
+    app.locals.req_path = req.path;
     next();
 });
+// 어디서든 isLogin이라는 변수에 접근 가능
 
 app.get('/', (req,res) => {
     res.send('express start');
 });
+// Routing
+app.use('/admin', admin);
+
 app.use((req, res, _) => {
     res.status(400).render('common/404.html');
 })// 404 페이지만 보여주고 끝나기 때문에 next 필요없음 -> _ 써줌
 app.use((req, res, _) => {
     res.status(500).render('common/500.html');
 })
-// Routing
-app.use('/admin', admin);
 
-// 어디서든 isLogin이라는 변수에 접근 가능
+
 app.listen( port, () => {
     console.log('Express listening on port', port);
 });
