@@ -1,8 +1,7 @@
 const express = require('express');
 const nunjucks = require('nunjucks');
 const logger = require('morgan');
-const bodyParser = require('body-parser'); // express 내장모듈 -> npm install 없이 바로 가져올 수 있음
-
+const bodyParser = require('body-parser'); // express 내장모듈 -> npm install 없이 바로 가져올 수 있다.
 const admin = require('./routes/admin');
 
 const app = express();
